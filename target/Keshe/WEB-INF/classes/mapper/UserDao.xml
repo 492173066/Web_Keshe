@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cassie.zigbee_dao.dao.UserDao">
+    <resultMap id="user" type="User">
+        <id property="userNum" column="userNum" javaType="Integer"/>
+        <result property="userName" column="userName" javaType="String"/>
+        <result property="userPassword" column="userPassword" javaType="String"/>
+        <result property="userPhone" column="userPhone" javaType="String"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="User">
+        insert into user values(#{userNum},#{userName},#{userPassword},#{userPhone})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update user set userName=#{userName},userPassword=#{userPassword},userPhone=#{userPhone} where userNum=#{userNum}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from user where userNum=#{userNum}
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="user">
+        select * from user where userNum=#{userNum}
+    </select>
+
+    <select id="selectAll" resultMap="user">
+        select * from user
+    </select>
+
+</mapper>
